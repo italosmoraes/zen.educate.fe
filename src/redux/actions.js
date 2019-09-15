@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const Actions = {}
 
 export const SET_NAME = "SET_NAME"
@@ -23,6 +25,31 @@ Actions.getList = function getList() {
       })
     }, 1500);
     /* End mock */
+  }
+}
+
+Actions.getOrderedListFromApi = function getOrderedList() {
+  return dispatch => {
+    const list = [ "James", "Jono", "John", "Radu", "Cole", "Italo" ]
+    const payload = { names: list };
+
+    axios.post(
+      'http://localhost:3001/sort-names',
+      payload,
+      )
+      .then((resp) => {
+        if (resp.data) {
+          dispatch({
+            type: GET_LIST,
+            payload: {
+              list: resp.data
+            }
+          })
+        } else {
+          throw new Error('no data returned')
+        }
+      })
+      .catch(err => console.log(err));
   }
 }
 

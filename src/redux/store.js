@@ -5,7 +5,8 @@ import reducers from "./reducers"
 const middlewares = [thunk]
 
 const createStoreWrapper = compose(
-  applyMiddleware(...middlewares)
+  applyMiddleware(...middlewares),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )(createStore)
 
 const store = createStoreWrapper(reducers)

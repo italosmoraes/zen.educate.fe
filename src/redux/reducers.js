@@ -4,7 +4,7 @@ import { SET_NAME, GET_LIST } from './actions'
 
 function names(state = {
  list: [],
- selected_name: "Cole"
+ selected_name: '',
 }, action) {
  switch (action.type) {
    case SET_NAME:
